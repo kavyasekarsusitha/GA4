@@ -30,6 +30,7 @@ apptainer exec "$TRIMGALORE_CONTAINER" \
     trim_galore \
     --cores 4 \
     --paired \
+    -a2 G{50} \
     --fastqc \
     --output_dir "$outdir" \
     "$R1" \
