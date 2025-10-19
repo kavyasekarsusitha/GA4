@@ -131,4 +131,111 @@ rm -r slurm-trim-37867458.out
 rm -r results/trimgalore/
 ```
 
+```bash
+git add README.md 
+git commit -m "Finished till Part-B"
+git add scripts/trimgalore.sh 
+git commit -m "Added -a2 option"
+```
 
+---
+
+## Part -c 
+
+13. Write a for loop in your README.md to submit a TrimGalore batch job for each pair of FASTQ files that you have in your data dir.
+
+```bash
+for R1 in data/*_R1.fastq.gz; do 
+R2=${R1/_R1/_R2}
+sbatch scripts/trimgalore.sh "$R1" "$R2" results/trimgalore
+done
+```
+
+The output was 
+
+```
+Submitted batch job 37868416
+Submitted batch job 37868417
+Submitted batch job 37868418
+Submitted batch job 37868419
+Submitted batch job 37868420
+Submitted batch job 37868421
+Submitted batch job 37868422
+Submitted batch job 37868423
+Submitted batch job 37868424
+Submitted batch job 37868425
+Submitted batch job 37868426
+Submitted batch job 37868427
+Submitted batch job 37868428
+Submitted batch job 37868429
+Submitted batch job 37868430
+Submitted batch job 37868431
+Submitted batch job 37868432
+Submitted batch job 37868433
+Submitted batch job 37868434
+Submitted batch job 37868435
+Submitted batch job 37868436
+Submitted batch job 37868437
+```
+
+14. Monitor the batch jobs and when they are done, check that everything went well (if it didn’t, redo until you get it right). In your README.md, explain your monitoring and checking process. In this case, it is appropriate to keep the Slurm log files: move them into a dir logs within the TrimGalore output dir.
+
+```bash
+squeue -u sskavya123 -l
+```
+the output was:
+
+```
+Sun Oct 19 15:34:35 2025
+             JOBID PARTITION     NAME     USER    STATE       TIME TIME_LIMI  NODES NODELIST(REASON)
+          37868437       cpu trimgalo sskavya1  RUNNING       0:15     30:00      1 p0157
+          37868421       cpu trimgalo sskavya1  RUNNING       0:18     30:00      1 p0078
+          37868422       cpu trimgalo sskavya1  RUNNING       0:18     30:00      1 p0080
+          37868423       cpu trimgalo sskavya1  RUNNING       0:18     30:00      1 p0080
+          37868424       cpu trimgalo sskavya1  RUNNING       0:18     30:00      1 p0031
+          37868425       cpu trimgalo sskavya1  RUNNING       0:18     30:00      1 p0031
+          37868426       cpu trimgalo sskavya1  RUNNING       0:18     30:00      1 p0031
+          37868427       cpu trimgalo sskavya1  RUNNING       0:18     30:00      1 p0095
+          37868428       cpu trimgalo sskavya1  RUNNING       0:18     30:00      1 p0094
+          37868429       cpu trimgalo sskavya1  RUNNING       0:18     30:00      1 p0094
+          37868430       cpu trimgalo sskavya1  RUNNING       0:18     30:00      1 p0155
+          37868431       cpu trimgalo sskavya1  RUNNING       0:18     30:00      1 p0155
+          37868432       cpu trimgalo sskavya1  RUNNING       0:18     30:00      1 p0155
+          37868433       cpu trimgalo sskavya1  RUNNING       0:18     30:00      1 p0155
+          37868434       cpu trimgalo sskavya1  RUNNING       0:18     30:00      1 p0155
+          37868435       cpu trimgalo sskavya1  RUNNING       0:18     30:00      1 p0155
+          37868436       cpu trimgalo sskavya1  RUNNING       0:18     30:00      1 p0158
+          37868417       cpu trimgalo sskavya1  RUNNING       0:20     30:00      1 p0008
+          37868418       cpu trimgalo sskavya1  RUNNING       0:20     30:00      1 p0017
+          37868419       cpu trimgalo sskavya1  RUNNING       0:20     30:00      1 p0017
+          37868420       cpu trimgalo sskavya1  RUNNING       0:20     30:00      1 p0078
+          37868416       cpu trimgalo sskavya1  RUNNING       0:21     30:00      1 p0003
+          37867351       cpu ondemand sskavya1  RUNNING    1:40:14   2:00:00      1 p0224
+```
+```bash
+ls -lh results/trimgalore/
+```
+The output was
+
+```
+total 944M
+-rw-rw----+ 1 sskavya123 PAS1838 2.5K Oct 19 15:34 ERR10802863_R1.fastq.gz_trimming_report.txt
+-rw-rw----+ 1 sskavya123 PAS1838 674K Oct 19 15:34 ERR10802863_R1_val_1_fastqc.html
+-rw-rw----+ 1 sskavya123 PAS1838 347K Oct 19 15:34 ERR10802863_R1_val_1_fastqc.zip
+-rw-rw----+ 1 sskavya123 PAS1838  20M Oct 19 15:34 ERR10802863_R1_val_1.fq.gz
+#truncated output
+```
+```bash
+mv *.out results/trimgalore/logs/
+ls -lh results/trimgalore/logs
+```
+
+The output was:
+```
+total 352K
+-rw-rw----+ 1 sskavya123 PAS1838 13K Oct 19 15:34 slurm-trim-37868416.out
+-rw-rw----+ 1 sskavya123 PAS1838 13K Oct 19 15:34 slurm-trim-37868417.out
+-rw-rw----+ 1 sskavya123 PAS1838 13K Oct 19 15:34 slurm-trim-37868418.out
+-rw-rw----+ 1 sskavya123 PAS1838 13K Oct 19 15:34 slurm-trim-37868419.out
+#truncate doutput
+```
