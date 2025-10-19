@@ -1,4 +1,9 @@
 #!/bin/bash
+#SBATCH --account=PAS2880
+#SBATCH --cpus-per-task=4
+#SBATCH --time=30
+#SBATCH --output=slurm-trim-%j.out
+#SBATCH --mail-type=FAIL
 set -euo pipefail
 
 # Constants
@@ -23,6 +28,7 @@ mkdir -p "$outdir"
 # Run TrimGalore
 apptainer exec "$TRIMGALORE_CONTAINER" \
     trim_galore \
+    --cores 4 \
     --paired \
     --fastqc \
     --output_dir "$outdir" \
