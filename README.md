@@ -255,3 +255,10 @@ git commit -m "Finished Part-c"
 git remote add origin git@github.com:kavyasekarsusitha/GA4.git
 git push -u origin main
 ```
+## Bonus
+
+I could not do all the steps, however I was able to extract the sample ids
+
+```bash
+sample_id=$(basename -a data/*_R*.fastq.gz _R*.fastq.gz)
+```
