@@ -1,3 +1,5 @@
+## PART-A
+
 2. Initialize a Git repository. Commit to the repo throughout the assignment as you see fit, but at least once for each “Part” of this assignment. Use and commit a .gitignore file as appropriate. (Tip: Many of you would do well to recall the feedback you got on your Git repo from the previous assignment!)
 
 ```bash
@@ -22,7 +24,7 @@ mkdir scripts/ results/
 ```bash
 touch scripts/trimgalore.sh
 ```
-Git realted commands:
+Git related commands:
 
 ```bash
 git add README.md 
@@ -52,7 +54,7 @@ git commit -m "Added script dir for the project"
 ```bash
 apptainer exec oras://community.wave.seqera.io/library/trim-galore:0.6.10--bc38c9238980c80e trim_galore --help
 ```
-The option that sepcifies number of cores usage is `-j` 
+The option that sepcifies number of cores usage is `-j` or `--cores`
 
 For paired end reads, `--cores 4` is the sweet spot and alloting more could cause diminishing returns
 
@@ -237,5 +239,19 @@ total 352K
 -rw-rw----+ 1 sskavya123 PAS1838 13K Oct 19 15:34 slurm-trim-37868417.out
 -rw-rw----+ 1 sskavya123 PAS1838 13K Oct 19 15:34 slurm-trim-37868418.out
 -rw-rw----+ 1 sskavya123 PAS1838 13K Oct 19 15:34 slurm-trim-37868419.out
-#truncate doutput
+#truncated doutput
+```
+```bash
+git add README.md
+git commit -m "Finished Part-c"
+```
+---
+
+## PART-D
+
+15. Create a repository on GitHub, connect it to your local repo, and push your local repo to GitHub.
+
+```bash
+git remote add origin git@github.com:kavyasekarsusitha/GA4.git
+git push -u origin main
 ```
